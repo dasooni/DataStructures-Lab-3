@@ -207,7 +207,10 @@ private:
 			
             Node *oldNode = t;
             t = (t->left != nullptr) ? t->left : t->right;
-            t != nullptr ? t->parent = oldNode->parent : nullptr;
+
+            if (t != nullptr) {
+                t->parent = oldNode->parent;
+            }
             delete oldNode;
         }
         return t;
