@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\Users\Dasmit\Desktop\lab3\code\lab3.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Dasmit\Desktop\lab3\code\test1.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Dasmit\Desktop\lab3\code\test2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Dasmit\Desktop\lab3\code\test3.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Dasmit\Desktop\lab3\code\frequency_table.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="C:\Users\Dasmit\Desktop\lab3\code\BinarySearchTree.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Dasmit\Desktop\lab3\code\dsexceptions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Dasmit\Desktop\lab3\code\iterator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Dasmit\Desktop\lab3\code\node.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\Dasmit\Desktop\lab3\code\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="C:\Users\Dasmit\Desktop\lab3\code\test0_out.txt" />
+    <None Include="C:\Users\Dasmit\Desktop\lab3\code\test1_out.txt" />
+    <None Include="C:\Users\Dasmit\Desktop\lab3\code\words.txt" />
+    <None Include="C:\Users\Dasmit\Desktop\lab3\code\text.txt" />
+    <None Include="C:\Users\Dasmit\Desktop\lab3\code\text_long.txt" />
+    <None Include="C:\Users\Dasmit\Desktop\lab3\code\frequency_table.txt" />
+    <None Include="C:\Users\Dasmit\Desktop\lab3\code\frequency_table_long.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{CCEDBB50-B5C2-329B-8307-E5306609A218}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{9AB8CA36-2555-3048-B8FA-69DFBCF65024}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
