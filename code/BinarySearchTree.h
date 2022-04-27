@@ -2,7 +2,9 @@
 
 #include <iostream>
 #include <iomanip>
-#include <cassert>  // used in node.h
+#include <cassert>
+#include <iterator> // used in node.h
+#include <vector>
 
 #include "dsexceptions.h"
 
@@ -34,9 +36,8 @@ public:
     }
 
     explicit BinarySearchTree(const std::vector<Comparable>& V) {
-		for (const auto& x : V) {
-			insert(x);
-		}
+
+        root =  ConvertToBST(V.begin(), V.end(), nullptr) ;
     }
 
     /**
@@ -50,6 +51,22 @@ public:
      */
     ~BinarySearchTree() {
         makeEmpty();
+    }
+
+	// public member function named find, that returns an Iterator pointing
+	// to the element in the tree that is equal to the parameter.
+    Iterator find(const Comparable& x) {
+        return contains(x, root);
+    }
+
+    Iterator begin() {
+        if (isEmpty()) return end();
+		
+        return Iterator(findMin(root));
+    }
+    
+    Iterator end() {
+        return Iterator(nullptr);
     }
 
     /**
@@ -207,10 +224,7 @@ private:
 			
             Node *oldNode = t;
             t = (t->left != nullptr) ? t->left : t->right;
-
-            if (t != nullptr) {
-                t->parent = oldNode->parent;
-            }
+            t != nullptr ? t->parent = oldNode->parent : nullptr;
             delete oldNode;
         }
         return t;
@@ -220,7 +234,7 @@ private:
      * Private member function to find the smallest item in a subtree t.
      * Return node containing the smallest item.
      */
-    Node *findMin(Node *t) const {
+    static Node *findMin(Node *t) {
         if (t == nullptr) {
             return nullptr;
         }
@@ -236,7 +250,7 @@ private:
      * Private member function to find the largest item in a subtree t.
      * Return node containing the largest item.
      */
-    Node *findMax(Node *t) const {
+    static Node *findMax(Node *t) {
         if (t != nullptr) {
             while (t->right != nullptr) {
                 t = t->right;
@@ -336,6 +350,82 @@ private:
 
         return temp;
     }
+
+    /*
+    * A private member function that takes in two iterators of a vector and 
+    * a parent node and inserts the elements of the vector into the tree.
+    */
+    Node* ConvertToBST(typename std::vector<Comparable>::const_iterator first, 
+        typename std::vector<Comparable>::const_iterator last, Node* par) {
+
+		// Base case
+        if (first == last) {
+            return nullptr;
+        }
+
+        // Find the middle element
+        auto mid = std::next(first,std::distance(first,last)/2);
+
+        // Create a node for the middle element
+        Node* temp = new Node(*mid, nullptr, nullptr, par);
+        
+		// Recursively do the same for the left and right subtrees
+        temp->left = ConvertToBST(first, mid, temp);
+        temp->right = ConvertToBST(mid + 1, last, temp);
+
+		// Return the root of the subtree
+        return temp;
+
+    }
+	/*
+    * A private member function named find_sucessor that returns a pointer
+    * to the node storing the sucessor of the node passed in as a parameter.
+    */
+	static Node* find_sucessor(Node* node) {
+		
+		// base case
+        if (node == nullptr) {
+			return nullptr;
+		}
+        // If the node has a right child
+		if (node->right != nullptr) {
+			// the minmum value in the right subtree is the sucessor
+			return findMin(node->right);
+		}
+		
+		// Otherwise, the sucessor is the first ancestor of the node
+		Node* temp = node->parent;
+		while (temp != nullptr && node == temp->right) {
+			node = temp;
+			temp = temp->parent; //update parent
+		}
+		return temp;
+	}
+
+	/*
+    * A private member function named find_predecessor that returns a pointer
+	* to the node storing the predecessor of the node passed in as a parameter.
+	*/
+	static Node* find_predecessor(Node* node)  {
+		
+        // base case
+		if (node == nullptr) {
+			return nullptr;
+		}
+		// If the node has a left child
+		if (node->left != nullptr) {
+			// the maxmum value in the left subtree is the predecessor
+			return findMax(node->left);
+		}
+		// Otherwise, the predecessor is the first ancestor of the node
+		Node* temp = node->parent;
+		while (temp != nullptr && node == temp->left) {
+			node = temp;
+			temp = temp->parent;
+		}
+		return temp;
+	}
+
 };
 
 // Include definitions of the nested classes

@@ -18,8 +18,47 @@ public:
 
     /* ****************************************************************** */
 
-    // Exercise 2: ADD CODE   
+	// Constructor
+    Iterator() : current{ nullptr } {};
+	
+	//Destructor
+    ~Iterator() = default;
+	
+	Comparable& operator*() const { return current->element; }
+	
+	Comparable* operator->() const { return &(current->element); }
 
+	bool operator==(const Iterator& rhs) const { return current == rhs.current; }
+	
+	bool operator!=(const Iterator&	rhs) const { return !(current == rhs.current);}
 
+	Iterator& operator++() {
+		current = find_sucessor(current);
+		return *this;
+	}
+	
+	Iterator operator++(int) {
+		Iterator old = *this;
+		++(*this);
+		return old;
+	}
+	
+	Iterator& operator--() {
+		current = find_predecessor(current);
+		return *this;
+	}
+	
+	Iterator operator--(int) {
+		Iterator old = *this;
+		--(*this);
+		return old;
+	}
+	
+
+private:
+	Node* current;
+	
+	Iterator(Node *node = nullptr) : current{ node } {};
     friend class BinarySearchTree;
+	
 };
