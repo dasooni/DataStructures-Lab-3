@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <crtdbg.h>
 
 void test1();  // see file test1.cpp
 void test2();  // see file test2.cpp
@@ -23,4 +24,5 @@ int main() {
     std::cout << "\nExercise 3 ...\n";
     std::cout << std::string(30, '=') << "\n";
     exercise3();
+    _CrtDumpMemoryLeaks();
 }
